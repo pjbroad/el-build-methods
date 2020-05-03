@@ -33,11 +33,19 @@ source $(dirname $0)/common.bash
 # show help if we are missing required parameters
 if [ "$1" != "rel" -a "$1" != "dev" ]
 then
-	echo "$(basename $0) <rel | dev> [<make options e.g. VERBOSE=1>]"
+	echo "$(basename $0) <rel | dev> [clean] [<make options e.g. VERBOSE=1>]"
 	exit
 fi
 buildtype=$1
 shift
+
+# If clean specified, we delete the build direcotry
+if [ "$1" = "clean" ]
+then
+	echo "Removing build directory"
+	rm -rf ${CLIENTBASE}/${REPONAME}/${BUILDTARGET}-${buildtype}/
+	exit
+fi
 
 # if the git repo does not exist, clone it
 # use the configured name and branch

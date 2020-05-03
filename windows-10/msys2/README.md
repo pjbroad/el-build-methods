@@ -80,6 +80,14 @@ The zip file is located in the `~/build` directory.  From the Windows
 file explorer, this directory can be found using, for exmaple, 
 `C:\msys64\home\Paul\build`.
 
+To remove the build directory, you can specify the `clean` parameter 
+for the build script, then re-build as before.
+
+``
+cd ~/el-build-methods/windows-10/msys2
+./build-client.bash dev clean
+``
+
 ## Updating the client code
 
 Assuming you used the provided scripts, the client code will be located 
