@@ -43,7 +43,7 @@ cd ~/el-build-methods/windows-10/msys2
 
 Now and in the future, you can update your Msys2 environment and all 
 the packaged libraries you just installed using a single command: 
-`<pacman -Syu>`.
+`pacman -Syu`.
 
 
 ## Building additional libraries
@@ -71,24 +71,24 @@ cd ~/el-build-methods/windows-10/msys2
 This script builds the client, then creates a date-tagged zip file
 containing the client executable and all the required DLL files.  You
 can unzip this file into a pre-installed client directory to use your
-build.  You can build either a development `<dev>` version that
+build.  You can build either a development `dev` version that
 contains debug symbols and a version string tagged with the build date,
-or a release `<rel>` version that uses full optomisation and the
+or a release `rel` version that uses full optomisation and the
 current release version string.
 
-The zip file is located in the `<~/build>` directory.  From the Windows 
+The zip file is located in the `~/build` directory.  From the Windows 
 file explorer, this directory can be found using, for exmaple, 
-`<C:\msys64\home\Paul\build>`.
+`C:\msys64\home\Paul\build`.
 
 ## Updating the client code
 
 Assuming you used the provided scripts, the client code will be located 
-in `<~/build/elc>`.  You can update the code using `<git pull>` or 
-switch to a tagged release using, for example `<git checkout 1.9.5.8>`, 
+in `~/build/elc`.  You can update the code using `git pull` or 
+switch to a tagged release using, for example `git checkout 1.9.5.8`, 
 then re-run the build script to build a new version.
 
 The built code is located a sub-directory of the source directory 
-named, for example `<mingw-w64-x86_64-dev>`.  A different directory is 
+named, for example `mingw-w64-x86_64-dev`.  A different directory is 
 used for development and release builds.
 
 Have fun, and help improve this information and scripts by offereing 
