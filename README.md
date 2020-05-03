@@ -5,7 +5,7 @@ methods over time.
 
 Current methods:
 * Windows 10
-  * [Msys](windows-10/msys2/)
+  * An open source Linux-like build environment [Msys](windows-10/msys2/).
 
 Have fun, and help improve this information and scripts by offering
 pull requests.
