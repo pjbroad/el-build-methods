@@ -3,7 +3,7 @@
 ## Initial installation and set-up
 
 This build method for Windows, uses the Msys2 tool.  Msys2 provides a 
-Linux like development enviroment with a wide range of open source 
+Linux like development environment with a wide range of open source 
 development tools and pre-packaged libraries.  It comes with a package 
 installer (based on Arch Linux pacman) that is easy use and makes it 
 easy to keep your environment up to date.
@@ -11,12 +11,12 @@ easy to keep your environment up to date.
 First, visit the Msys2 website 
 [https://www.msys2.org/](https://www.msys2.org/), then download and run 
 the installer.  Accept the defaults following the steps described on 
-the site.  When complete, you will have the basic enviroment installed 
+the site.  When complete, you will have the basic environment installed 
 and up to date.
 
 Using a Msys2 terminal for your specific system, for example the 64-bit 
 terminal.  Install the git package so you can download the github 
-repository that holds the reminaing setup scripts and the script to 
+repository that holds the remaining setup scripts and the script to 
 build the client.
 
 ```
@@ -33,7 +33,7 @@ git clone https://github.com/pjbroad/el-build-methods.git
 
 To complete initial set-up, run the provided set-up script. Accept the 
 defaults, this will take some time as over 100 packages will be installed. These 
-include the c/c++ build enviroment and all the packages needed to build 
+include the c/c++ build environment and all the packages needed to build 
 the client.
 
 ```
@@ -73,7 +73,7 @@ containing the client executable and all the required DLL files.  You
 can unzip this file into a pre-installed client directory to use your
 new build.  You can build either a development `dev` version that
 contains debug symbols and a version string tagged with the build date,
-or a release `rel` version that uses full optomisation and the
+or a release `rel` version that uses full optimisation and the
 current release version string.
 
 The created zip file is located in the `~/build` directory.  From the Windows 
@@ -99,7 +99,7 @@ The built code is located a sub-directory of the source directory
 named, for example `mingw-w64-x86_64-dev`.  A different directory is 
 used for development and release builds.
 
-Have fun, and help improve this information and scripts by offereing 
+Have fun, and help improve this information and scripts by offering 
 pull requests.
 
 
