@@ -5,4 +5,4 @@ Current methods:
 * Windows 10
   * [Msys](windows-10/msys2/)
 
-Have fun, and help improve this information and scripts by offereing pull requests.
+Have fun, and help improve this information and scripts by offering pull requests.
