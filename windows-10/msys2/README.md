@@ -83,10 +83,10 @@ file explorer, this directory can be found using, for exmaple,
 To remove the build directory, you can specify the `clean` parameter 
 for the build script, then re-build as before.
 
-``
+```
 cd ~/el-build-methods/windows-10/msys2
 ./build-client.bash dev clean
-``
+```
 
 ## Updating the client code
 
