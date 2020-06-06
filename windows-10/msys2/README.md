@@ -14,10 +14,20 @@ the installer.  Accept the defaults following the steps described on
 the site.  When complete, you will have the basic environment installed 
 and up to date.
 
-Using a Msys2 terminal for your specific system, for example the 64-bit 
-terminal.  Install the git package so you can download the github 
-repository that holds the remaining setup scripts and the script to 
-build the client.
+Msys provides a Linux-like terminal environment with three terminal
+types.  The default terminal is generic (not specific to the processor
+architecture) and cannot be used to build code.  The other types are
+for building 32-bit or 64-bit applications.  You can select the
+specific build terminal from the Msys launcher which can always be
+opened with a right-click of the Msys icon.
+
+The set-up and build scripts provided in this repo must be run from
+either the 32-bit or 64-bit terminal.  Open a terminal of the type
+needed for the client version you want to build and use that going
+forwards.
+
+Now, install the git package so you can download the github repository
+that holds the setup scripts and the scripts to build the client.
 
 ```
 pacman -S git
