@@ -110,6 +110,16 @@ ${MSYSTEM_PREFIX}/bin/libzstd.dll \
 ${MSYSTEM_PREFIX}/bin/SDL2.dll \
 ${MSYSTEM_PREFIX}/bin/SDL2_image.dll \
 ${MSYSTEM_PREFIX}/bin/SDL2_net.dll \
+${MSYSTEM_PREFIX}/bin/SDL2_ttf.dll \
+${MSYSTEM_PREFIX}/bin/libfreetype-6.dll \
+${MSYSTEM_PREFIX}/bin/libbz2-1.dll \
+${MSYSTEM_PREFIX}/bin/libharfbuzz-0.dll \
+${MSYSTEM_PREFIX}/bin/libbrotlidec.dll \
+${MSYSTEM_PREFIX}/bin/libbrotlicommon.dll \
+${MSYSTEM_PREFIX}/bin/libgraphite2.dll \
+${MSYSTEM_PREFIX}/bin/libglib-2.0-0.dll \
+${MSYSTEM_PREFIX}/bin/libintl-8.dll \
+${MSYSTEM_PREFIX}/bin/libpcre-1.dll \
 ${MSYSTEM_PREFIX}/bin/zlib1.dll \
 ${MSYSTEM_PREFIX}/bin/libogg-0.dll \
 ${MSYSTEM_PREFIX}/bin/libvorbis-0.dll \

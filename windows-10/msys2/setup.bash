@@ -44,6 +44,7 @@ pacman -S --needed \
 	${MINGW_PACKAGE_PREFIX}-SDL2 \
 	${MINGW_PACKAGE_PREFIX}-SDL2_image \
 	${MINGW_PACKAGE_PREFIX}-SDL2_net \
+	${MINGW_PACKAGE_PREFIX}-SDL2_ttf \
 	${MINGW_PACKAGE_PREFIX}-libvorbis \
 	${MINGW_PACKAGE_PREFIX}-libogg \
 	${MINGW_PACKAGE_PREFIX}-nlohmann-json
