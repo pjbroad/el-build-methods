@@ -6,6 +6,8 @@ methods over time.
 Current methods:
 * Windows 10
   * An open source Linux-like build environment [Msys](windows-10/msys2/).
+* Android
+  * Set-up the enviroment and build the client for [Android](android/).
 
 Have fun, and help improve this information and scripts by offering
 pull requests.
