@@ -18,7 +18,7 @@ sudo apt install git wget unzip openjdk-8-jdk-headless ant
 ```
 
 ## Android tools
-Currently, the build uses Ant which is not longer included in the
+Currently, the build uses Ant which is no longer included in the
 latest ANDROID tools, for now we can use the last supported version.
 Despite this, we can still use the current stable build-tools,
 platform-tools and NDK.
@@ -91,14 +91,15 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export ANDROID_HOME=$HOME/android-tools
 ```
 
-There is a script provided that downloads and set-up the additional
+There is a script provided that downloads and sets-up the additional
 libraries needed.  Assuming you are in the android directory, run this
 using:
 ```
 ./setup-libs.bash
 ```
-You only need to this once, but it can be run again.  You can also
-specify a `--clean` parameter that can be used to remove the libraries.
+You only need to do this once, but it can be run again.  Each time it
+will remove and set-up the libraries again.  You can also specify a
+`--clean` parameter that can be used to just remove the libraries.
 
 The command that you will use more often builds and packages the
 client. Run this using:
