@@ -7,7 +7,7 @@ Current methods:
 * Windows 10
   * An open source Linux-like build environment [Msys](windows-10/msys2/).
 * macOS
-  * Set-up the environment and build the client for macOS using [Xcode](macOS/Xcode).
+  * Set-up the environment and build the client for macOS using [Xcode](macOS/Xcode/).
 * Android
   * Set-up the environment and build the client for [Android](android/).
 

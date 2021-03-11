@@ -1,0 +1,6 @@
+framework module cal3d {
+  umbrella header "cal3d.h"
+
+  export *
+  module * { export * }
+}
