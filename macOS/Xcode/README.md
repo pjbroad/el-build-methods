@@ -24,8 +24,10 @@
 
 This guide describes the steps needed to build the Eternal Lands client 
 for macOS using Apple's integrated development environment, Xcode. 
-The guide assumes some familiarity with the macOS build process, but 
-efforts will be made to make the process as easy to follow as possible.
+The guide assumes you are looking to build the latest release version of 
+the client source. The guide also assumes some familiarity with the 
+macOS build process, but efforts have bbeen made to make the process 
+as easy to follow as possible.
 
 ### Important Note
 
@@ -34,15 +36,15 @@ will run **on your local machine only** and **will not be distributable
 to other users unless it has been signed by a registered Apple 
 Developer account and subsequently notarised by Apple**. Steps to 
 achieve this have not been included in this guide as it is assumed that 
-somebody in possession registered Apple Developer account will already 
-be familiar with the process.
+somebody in possession of a registered Apple Developer account will 
+already be familiar with the process.
 
 ## 2. Prerequisites
 
 To build the client for macOS you'll need both a relatively modern version 
 of macOS and a recent release of Xcode. It is recommended that your 
 build environment be running at least macOS 10.15.4 (Catalina), though 
-11.0 (Big Sur) is preferable.
+11.0 (Big Sur) or later is preferable.
 
 If you are planning to build a universal binary with support for both 
 x86_64 (Intel) and ARM64 (Apple Silicon)-based macs you'll need to be 
@@ -58,8 +60,8 @@ before proceeding.
 
 Before you can build the client, you will need to ensure that you have 
 the correct frameworks available on your system. Conveniently, this 
-guide has been bundled with all of the frameworks you will need (under [Frameworks](Frameworks/)) to build the latest release version of the 
-client (1.9.5p9).
+guide has been bundled with all of the frameworks you will need (under 
+[Frameworks](Frameworks/)) to build the latest version of the client.
 
 The Xcode project has been configured to search for frameworks in the 
 following location: `/Users/<accountname>/Library/Frameworks/`
@@ -163,6 +165,6 @@ following location: `/Users/<accountname>/Library/Developer/Xcode/DerivedData/Et
 
 ## 9. Further Support
 
-If you have any trouble following this guide or getting the client to build on 
-your Mac, please feel free to drop me (Ben) a message in-game or via the 
+If something goes wrong or you have any trouble following this guide, 
+please feel free to drop me (Ben) a message in-game or via the 
 [Eternal Lands forum](http://www.eternal-lands.com/forum/).
