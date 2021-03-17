@@ -57,7 +57,7 @@ highly recommended that you browse through the "Welcome" section
 of the [Xcode Help guide](https://help.apple.com/xcode/mac/current/) 
 before proceeding.
 
-## 3. Obtaining the Frameworks
+## 3. Obtaining the Framework Pack
 
 Before you can build the client, you will need to ensure that you have 
 the correct frameworks available on your system.
@@ -66,9 +66,9 @@ You can obtain the latest framework pack directly from the [releases page](https
 Eternal Lands github. The framework pack will be listed as an asset for 
 the latest source code release.
 
- The file you are looking for will be named `el_1.9.5p*_macOS_frameworks.zip`, 
- or something very similar. Download and extract it somewhere that'll 
- be easy for you to find.
+The file you are looking for will be named `el_1.9.5p*_macOS_frameworks.zip`, 
+or something very similar. Download and extract it somewhere that'll 
+be easy for you to find.
 
 Once extracted, you should have a folder named 
 `el_1.9.5p*_macOS_Frameworks` which contains the *.framework 
@@ -117,9 +117,9 @@ You can obtain the latest data pack directly from the [releases page](https://gi
 Lands github. The data pack will be listed as an asset for the latest source 
 code release.
 
- The file you are looking for will be named `el_195_p*_data_files.zip`, 
- or something very similar. Download and extract it somewhere that'll 
- be easy for you to find.
+The file you are looking for will be named `el_195_p*_data_files.zip`, 
+or something very similar. Download and extract it somewhere that'll 
+be easy for you to find.
 
 Once you have extracted the files, it is **very important** that the main 
 outer folder (the one **directly** containing `2dobjects`, `3dobjects`,
