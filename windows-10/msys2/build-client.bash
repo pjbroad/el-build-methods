@@ -124,6 +124,8 @@ ${MSYSTEM_PREFIX}/bin/zlib1.dll \
 ${MSYSTEM_PREFIX}/bin/libogg-0.dll \
 ${MSYSTEM_PREFIX}/bin/libvorbis-0.dll \
 ${MSYSTEM_PREFIX}/bin/libvorbisfile-3.dll \
+${MSYSTEM_PREFIX}/bin/libdeflate.dll \
+${MSYSTEM_PREFIX}/bin/libffi-7.dll \
 ${PACKAGELOCAL}/bin/libcal3d-12.dll \
 .
 if [ "$MSYSTEM" = "MINGW32" ]
@@ -131,7 +133,10 @@ then
 	cp -p ${MSYSTEM_PREFIX}/bin/libgcc_s_dw2-1.dll .
 elif [ "$MSYSTEM" = "MINGW64" ]
 then
-	cp -p ${MSYSTEM_PREFIX}/bin/libgcc_s_seh-1.dll .
+	cp -p ${MSYSTEM_PREFIX}/bin/libgcc_s_seh-1.dll \
+		${MSYSTEM_PREFIX}/bin/libLLVM.dll \
+		${MSYSTEM_PREFIX}/bin/libglapi.dll \
+		.
 fi
 
 # zip up the directory of files
