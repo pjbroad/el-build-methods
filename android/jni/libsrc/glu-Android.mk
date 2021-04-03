@@ -114,7 +114,7 @@ LOCAL_SRC_FILES := \
 	src/libnurbs/nurbtess/searchTree.cc
 
 #LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
-#LOCAL_LDLIBS := -ldl -llog
+LOCAL_LDLIBS := -ldl -llog
 
 LOCAL_SHARED_LIBRARIES := \
 	libGL

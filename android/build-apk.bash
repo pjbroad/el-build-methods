@@ -56,3 +56,8 @@ APP_ALLOW_MISSING_DEPS=true ndk-build --silent -j $(grep -c ^processor /proc/cpu
 
 echo "" && echo "Packaging ..."
 ant -silent debug
+
+if [ -x "./local-build-apk.bash" ]
+then
+	./local-build-apk.bash "$BUILDTAG" $*
+fi

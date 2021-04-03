@@ -155,6 +155,8 @@ rm -f ${libsdlappdir}/*.java
 [ -d ${libsdlappdir} ] && rmdir --ignore-fail-on-non-empty --parents ${libsdlappdir}/
 if [ -z "$clean_libs" ]
 then
+	# cd SDL2-2.0.14/android-project/app/src/main/java/org/libsdl/app
+	# diff -Naur SDLActivity.java SDLActivity.java-modified > ../../../../../../../../../SDLActivity.java.patch
 	cd ${libdir}/
 	[ ! -r SDL2-${version}.tar.gz ] && wget https://www.libsdl.org/release/SDL2-${version}.tar.gz
 	tar xfz SDL2-${version}.tar.gz
