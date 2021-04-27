@@ -155,8 +155,6 @@ rm -f ${libsdlappdir}/*.java
 [ -d ${libsdlappdir} ] && rmdir --ignore-fail-on-non-empty --parents ${libsdlappdir}/
 if [ -z "$clean_libs" ]
 then
-	# cd SDL2-2.0.14/android-project/app/src/main/java/org/libsdl/app
-	# diff -Naur SDLActivity.java SDLActivity.java-modified > ../../../../../../../../../SDLActivity.java.patch
 	cd ${libdir}/
 	[ ! -r SDL2-${version}.tar.gz ] && wget https://www.libsdl.org/release/SDL2-${version}.tar.gz
 	tar xfz SDL2-${version}.tar.gz
@@ -165,11 +163,12 @@ then
 	sed -i 's|-lGLESv2||g' SDL2/Android.mk
 	sed -i 's|#define SDL_VIDEO_OPENGL_ES2|//#define SDL_VIDEO_OPENGL_ES2|g' SDL2/include/SDL_config_android.h
 	sed -i 's|#define SDL_VIDEO_RENDER_OGL_ES2|//#define SDL_VIDEO_RENDER_OGL_ES2|g' SDL2/include/SDL_config_android.h
-	cp -p ${libdir}/SDLActivity.java.patch SDL2/android-project/app/src/main/java/org/libsdl/app/
-	cd SDL2/android-project/app/src/main/java/org/libsdl/app/
-	patch -p0 < SDLActivity.java.patch
+	# diff -Naur SDLActivity.java.orginal SDLActivity.java > SDLActivity.java.patch
 	mkdir -p ${libsdlappdir}
-	cp -p *.java ${libsdlappdir}/
+	cp -p SDL2/android-project/app/src/main/java/org/libsdl/app/*.java ${libsdlappdir}/
+	cp -p ${libdir}/SDLActivity.java.patch ${libsdlappdir}/
+	cd ${libsdlappdir}/
+	patch -p0 < SDLActivity.java.patch
 	cd $basedir
 fi
 

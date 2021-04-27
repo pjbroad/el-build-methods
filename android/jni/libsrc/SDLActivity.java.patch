@@ -1,5 +1,5 @@
---- SDLActivity.java	2021-03-21 13:51:34.382852570 +0000
-+++ SDLActivity.java-modified	2021-03-21 13:55:05.591460898 +0000
+--- SDLActivity.java.orginal	2021-04-26 23:40:36.568567646 +0100
++++ SDLActivity.java	2021-04-26 23:43:44.129539353 +0100
 @@ -165,10 +165,15 @@
          return new String[] {
              "hidapi",
@@ -8,8 +8,9 @@
 +            "SDL2_image",
              // "SDL2_mixer",
 -            // "SDL2_net",
+-            // "SDL2_ttf",
 +            "SDL2_net",
-             // "SDL2_ttf",
++            "SDL2_ttf",
 +            "cal3d",
 +            "xml2",
 +            "iconv",
