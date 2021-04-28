@@ -44,7 +44,8 @@ if [ ! -r assets/asset.list ]
 then
 	echo "" && echo "Generating Assets ..."
 	cd assets
-	find ttf/ -name "*.ttf" > ttf_list.txt
+	find fonts/ -name "*.ttf" > ttf_list.txt
+	find . -name "*.menu" > user_menus.txt
 	date +"%s" > asset.list
 	find . -type f | grep -v "^./asset.list$" >> asset.list
 	cd ../
