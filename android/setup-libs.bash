@@ -235,3 +235,73 @@ then
 	patch -p1 < gl4es-0.9.5-patch
 	cd ..
 fi
+
+# openssl
+#
+cd $basedir
+version="OpenSSL_1_1_1k"
+rm -rf ${libdir}/openssl-${version}
+rm -f openssl
+if [ -z "$clean_libs" ]
+then
+	SYSROOT=${NDK_ROOT}/platforms/android-19/arch-arm
+	PLATFORM=android-arm
+
+	cd ${libdir}/
+	[ ! -r ${version}.tar.gz ] && wget https://github.com/openssl/openssl/archive/refs/tags/${version}.tar.gz
+	tar xfz ${version}.tar.gz
+	cd ..
+	ln -s ${libdir}/openssl-${version} openssl
+
+	cp ${libdir}/openssl-android-config.mk openssl/android-config.mk
+	cp ${libdir}/openssl-Android.mk openssl/Android.mk
+	cp ${libdir}/openssl-crypto-Android.mk openssl/crypto/Android.mk
+	cp ${libdir}/openssl-ssl-Android.mk openssl/ssl/Android.mk
+
+	cd openssl
+
+	# This may not be the way to go about it, but I don't know
+	# how else to coax the Configure script into running
+	ln -snf ${ANDROID_HOME}/platforms ${NDK_ROOT}/platforms
+	ln -snf ${NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/sysroot ${SYSROOT}
+	ANDROID_NDK_HOME=${NDK_ROOT} \
+		CROSS_SYSROOT=${SYSROOT} \
+		PATH="${PATH}:$NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/" \
+		./Configure ${PLATFORM}
+
+	# Generate configuration headers, cheerfully stolen from the
+	# generated Makefile
+	perl -I. -Mconfigdata "util/dofile.pl" "-oMakefile" \
+		include/crypto/bn_conf.h.in > include/crypto/bn_conf.h
+	perl -I. -Mconfigdata "util/dofile.pl" "-oMakefile" \
+		include/crypto/dso_conf.h.in > include/crypto/dso_conf.h
+	perl -I. -Mconfigdata "util/dofile.pl" "-oMakefile" \
+		include/openssl/opensslconf.h.in > include/openssl/opensslconf.h
+	perl util/mkbuildinf.pl "" ${PLATFORM} > crypto/buildinf.h
+
+	#perl ./crypto/armv4cpuid.pl void ./crypto/armv4cpuid.S
+
+	# Generate 32-bit asm files
+	perl ./crypto/aes/asm/aes-armv4.pl void ./crypto/aes/aes-armv4.S
+	perl ./crypto/aes/asm/aesv8-armx.pl void ./crypto/aes/aesv8-armx.S
+	perl ./crypto/aes/asm/bsaes-armv7.pl void ./crypto/aes/bsaes-armv7.S
+	perl ./crypto/bn/asm/armv4-gf2m.pl void ./crypto/bn/armv4-gf2m.S
+	perl ./crypto/bn/asm/armv4-mont.pl void ./crypto/bn/armv4-mont.S
+	perl ./crypto/chacha/asm/chacha-armv4.pl void ./crypto/chacha/chacha-armv4.S
+	perl ./crypto/ec/asm/ecp_nistz256-armv4.pl void ./crypto/ec/ecp_nistz256-armv4.S
+	perl ./crypto/modes/asm/ghash-armv4.pl void ./crypto/modes/ghash-armv4.S
+	perl ./crypto/modes/asm/ghashv8-armx.pl void ./crypto/modes/ghashv8-armx.S
+	perl ./crypto/poly1305/asm/poly1305-armv4.pl void crypto/poly1305/poly1305-armv4.S
+	perl ./crypto/sha/asm/keccak1600-armv4.pl void crypto/sha/keccak1600-armv4.S
+	perl ./crypto/sha/asm/sha1-armv4-large.pl void crypto/sha/sha1-armv4-large.S
+	perl ./crypto/sha/asm/sha256-armv4.pl void ./crypto/sha/sha256-armv4.S
+	perl ./crypto/sha/asm/sha512-armv4.pl void ./crypto/sha/sha512-armv4.S
+	perl ./crypto/armv4cpuid.pl void ./crypto/armv4cpuid.S
+
+	# Generate 64-bit asm files
+	perl ./crypto/arm64cpuid.pl void ./crypto/arm64cpuid.S
+	perl ./crypto/ec/asm/ecp_nistz256-armv8.pl void ./crypto/ec/asm/ecp_nistz256-armv8.S
+	perl ./crypto/aes/asm/aesv8-armx.pl linux64 ./crypto/aes/aesv8-armx-64.S
+	perl ./crypto/modes/asm/ghashv8-armx.pl linux64 crypto/modes/ghashv8-armx-64.S
+
+fi
