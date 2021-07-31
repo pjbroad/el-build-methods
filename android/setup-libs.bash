@@ -53,6 +53,7 @@ then
 	export CC="$NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi${API_LEVEL}-clang"
 	export CFLAGS="$($NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-config --cflags)"
 	export LDFLAGS="$($NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-config --ldflags)"
+	export PATH=$NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
 fi
 
 
@@ -169,6 +170,7 @@ then
 	cp -p ${libdir}/SDLActivity.java.patch ${libsdlappdir}/
 	cd ${libsdlappdir}/
 	patch -p0 < SDLActivity.java.patch
+	rm -f SDLActivity.java.patch
 	cd $basedir
 fi
 
