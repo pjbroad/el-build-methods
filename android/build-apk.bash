@@ -46,6 +46,7 @@ then
 	cd assets
 	find fonts/ -name "*.ttf" > ttf_list.txt
 	find . -name "*.menu" > user_menus.txt
+	find certificates/ -type f > certs.txt
 	date +"%s" > asset.list
 	find . -type f | grep -v "^./asset.list$" >> asset.list
 	cd ../
