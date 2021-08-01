@@ -99,6 +99,13 @@ then
 	unzip -oq $dlcache/BurnedMaps-1.9.5-02-minimal-version.zip
 	cd ..
 
+	# if we have local assets files then include them
+	if [ -r ../assets_local/ ]
+	then
+		echo "Including local assets..."
+		cp -pR ../assets_local/* .
+	fi
+
 	echo "Making final adjustments..."
 
 	# rename compressed files to that they are not uncmpressed by the packing process
