@@ -61,16 +61,6 @@ git clone https://github.com/pjbroad/el-build-methods.git
 cd el-build-methods/android/
 ```
 
-#### Downloading the assets
-Set your current directory to the android directory of the repo.  The
-Android package assets are available to download from the EL github, so
-download and unpack the assets using:
-```
-wget https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.8/el-android-assets-1.9.5p9dev.zip
-echo "419466d385206933419487d002d9457d el-android-assets-1.9.5p9dev.zip" | md5sum -c -
-unzip el-android-assets-1.9.5p9dev.zip 
-````
-
 #### Downloading the Eternal Lands Client
 Next, clone the Eternal Lands source into the build tree.  The Android
 port is currently in a separate branch so we also need to checkout that
@@ -102,7 +92,9 @@ will remove and set-up the libraries again.  You can also specify a
 `--clean` parameter that can be used to just remove the libraries.
 
 The command that you will use more often builds and packages the
-client. Run this using:
+client.  The script optionally downloads and creates the assets file
+tree, builds the libraries, builds the client and creates the Android
+apk file. Run this using:
 ```
 ./build-apk.bash
 ```
