@@ -67,7 +67,7 @@ libdir=libsrc
 # libxml2
 #
 cd $basedir
-version="2.9.10"
+version="2.9.11"
 rm -rf ${libdir}/libxml2-${version}/
 rm -f xml2
 if [ -z "$clean_libs" ]
@@ -112,7 +112,7 @@ fi
 # glu
 #
 cd $basedir
-version="9.0.1"
+version="9.0.2"
 rm -rf ${libdir}/glu-${version}/
 rm -f glu
 if [ -z "$clean_libs" ]
