@@ -664,7 +664,9 @@ local_src_files := \
 	x509v3/v3_sxnet.c \
 	x509v3/v3_tlsf.c \
 	x509v3/v3_utl.c \
-	x509v3/v3err.c
+	x509v3/v3err.c \
+	../engines/e_capi.c \
+	../engines/e_padlock.c
 
 local_c_includes := \
 	$(NDK_PROJECT_PATH)/jni/openssl \
@@ -679,13 +681,54 @@ local_c_flags := -DNO_WINDOWS_BRAINDEATH
 
 #######################################
 
-# target
+## target
+#include $(CLEAR_VARS)
+#include $(LOCAL_PATH)/../android-config.mk
+#LOCAL_SRC_FILES += $(local_src_files)
+#LOCAL_CFLAGS += $(local_c_flags)
+#LOCAL_C_INCLUDES += $(local_c_includes)
+#LOCAL_LDLIBS += -lz
+#ifeq ($(TARGET_ARCH),arm)
+#	LOCAL_SRC_FILES += $(arm_src_files)
+#	LOCAL_CFLAGS += $(arm_cflags)
+#else ifeq ($(TARGET_ARCH),arm64)
+#	LOCAL_SRC_FILES += $(arm64_src_files)
+#	LOCAL_CFLAGS += $(arm64_cflags)
+#else
+#	LOCAL_SRC_FILES += $(non_arm_src_files)
+#endif
+#ifeq ($(TARGET_SIMULATOR),true)
+#	# Make valgrind happy.
+#	LOCAL_CFLAGS += -DPURIFY
+#	LOCAL_LDLIBS += -ldl
+#endif
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_MODULE:= libcrypto
+#include $(BUILD_SHARED_LIBRARY)
+
+########################################
+## host shared library
+#ifeq ($(WITH_HOST_DALVIK),true)
+#    include $(CLEAR_VARS)
+#    include $(LOCAL_PATH)/../android-config.mk
+#    LOCAL_SRC_FILES += $(local_src_files)
+#    LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
+#    LOCAL_C_INCLUDES += $(local_c_includes)
+#    LOCAL_SRC_FILES += $(non_arm_src_files)
+#    LOCAL_LDLIBS += -ldl
+#    LOCAL_MODULE_TAGS := optional
+#    LOCAL_MODULE:= libcrypto
+#    include $(BUILD_SHARED_LIBRARY)
+#endif
+
+########################################
+# host static library, which is used by some SDK tools.
+
 include $(CLEAR_VARS)
 include $(LOCAL_PATH)/../android-config.mk
 LOCAL_SRC_FILES += $(local_src_files)
-LOCAL_CFLAGS += $(local_c_flags)
+LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
 LOCAL_C_INCLUDES += $(local_c_includes)
-LOCAL_LDLIBS += -lz
 ifeq ($(TARGET_ARCH),arm)
 	LOCAL_SRC_FILES += $(arm_src_files)
 	LOCAL_CFLAGS += $(arm_cflags)
@@ -695,40 +738,7 @@ else ifeq ($(TARGET_ARCH),arm64)
 else
 	LOCAL_SRC_FILES += $(non_arm_src_files)
 endif
-ifeq ($(TARGET_SIMULATOR),true)
-	# Make valgrind happy.
-	LOCAL_CFLAGS += -DPURIFY
-    LOCAL_LDLIBS += -ldl
-endif
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE:= libcrypto
-include $(BUILD_SHARED_LIBRARY)
-
-#######################################
-# host shared library
-ifeq ($(WITH_HOST_DALVIK),true)
-    include $(CLEAR_VARS)
-    include $(LOCAL_PATH)/../android-config.mk
-    LOCAL_SRC_FILES += $(local_src_files)
-    LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
-    LOCAL_C_INCLUDES += $(local_c_includes)
-    LOCAL_SRC_FILES += $(non_arm_src_files)
-    LOCAL_LDLIBS += -ldl
-    LOCAL_MODULE_TAGS := optional
-    LOCAL_MODULE:= libcrypto
-    include $(BUILD_SHARED_LIBRARY)
-endif
-
-#########################################
-## host static library, which is used by some SDK tools.
-#
-#include $(CLEAR_VARS)
-#include $(LOCAL_PATH)/../android-config.mk
-#LOCAL_SRC_FILES += $(local_src_files)
-#LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
-#LOCAL_C_INCLUDES += $(local_c_includes)
-#LOCAL_SRC_FILES += $(non_arm_src_files)
 #LOCAL_LDLIBS += -ldl
-#LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE:= libcrypto_static
-#include $(BUILD_STATIC_LIBRARY)
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE:= libcrypto_static
+include $(BUILD_STATIC_LIBRARY)
