@@ -30,6 +30,11 @@ export PATH=$PATH:$ANDROID_HOME/ndk-bundle
 
 cd $(dirname $0)
 
+extractdatadir="el_data/"
+maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/eternallands-data_1.9.5.9-1.zip"
+androiddatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/eternallands-android-only-data_1.9.5dev.zip"
+tabmappath="https://maps.el-db.com/packs/BurnedMaps-1.9.5-02-minimal-version.zip"
+
 # optionally remove all build artifacts (preserves library setup)
 echo "" && read -p "Clean build? (y/n) [n]: " opt
 if [ "$opt" = "Y" -o "$opt" = "y" ]
@@ -46,6 +51,7 @@ then
 	echo "" && read -p "Clean asset? (y/n) [n]: " opt
 	if [ "$opt" = "Y" -o "$opt" = "y" ]
 	then
+		chmod -R +w assets/
 		rm -rf assets/
 	fi
 fi
@@ -66,38 +72,48 @@ then
 	dlcache=$(pwd)/assets_download_cache
 	mkdir -p $dlcache
 	cd $dlcache
-	if [ ! -r eternallands-data_1.9.5.9-1.zip ]
+	if [ -n "$maindatapath" -a ! -r "$(basename "$maindatapath")" ]
 	then
 		echo "Fetching data package..."
-		wget -q https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/eternallands-data_1.9.5.9-1.zip
+		wget -q "$maindatapath"
 	fi
-	if [ ! -r eternallands-android-only-data_1.9.5dev.zip ]
+	if [ -n "$androiddatapath" -a ! -r "$(basename "$androiddatapath")" ]
 	then
 		echo "Fetching android only data package..."
-		wget -q https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/eternallands-android-only-data_1.9.5dev.zip
+		wget -q "$androiddatapath"
 	fi
-	if [ ! -r BurnedMaps-1.9.5-02-minimal-version.zip ]
+	if [ -n "$tabmappath" -a ! -r "$(basename "$tabmappath")" ]
 	then
 		echo "Fetching Burn's tab maps..."
-		wget -q https://maps.el-db.com/packs/BurnedMaps-1.9.5-02-minimal-version.zip
+		wget -q "$tabmappath"
 	fi
+
 	cd ..
+	rm -rf assets/
 
 	echo "Unpacking data..."
 
 	# start by unpacking the data package
-	rm -rf assets/ el_data/
-	unzip -q $dlcache/eternallands-data_1.9.5.9-1.zip
-	mv el_data/ assets/
+	if [ -n "$maindatapath" ]
+	then
+		unzip -q "$dlcache/$(basename "$maindatapath")"
+		mv "$extractdatadir" assets/
+	else
+		mkdir assets/
+	fi
 	cd assets/
 
 	# unpack the android only data files
-	unzip -oq $dlcache/eternallands-android-only-data_1.9.5dev.zip
+	[ -n "$androiddatapath" ] && unzip -oq "$dlcache/$(basename "$androiddatapath")"
 
 	# overwrite the tab maps with Burn's package
-	cd maps
-	unzip -oq $dlcache/BurnedMaps-1.9.5-02-minimal-version.zip
-	cd ..
+	if [ -n "$tabmappath" ]
+	then
+		mkdir -p maps
+		cd maps
+		unzip -oq "$dlcache/$(basename "$tabmappath")"
+		cd ..
+	fi
 
 	# if we have local assets files then include them
 	if [ -r ../assets_local/ ]
@@ -116,9 +132,9 @@ then
 	rm -rf shaders/
 
 	# generate the font list, user menu list and the certificate list
-	find fonts/ -name "*.ttf" > ttf_list.txt
+	[ -d fonts ] && find fonts/ -name "*.ttf" > ttf_list.txt
 	find . -name "*.menu" > user_menus.txt
-	find certificates/ -type f > certs.txt
+	[ -d certificates ] && find certificates/ -type f > certs.txt
 
 	# create the asset list
 	date +"%s" > asset.list
