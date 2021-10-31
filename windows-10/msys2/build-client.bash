@@ -126,16 +126,26 @@ ${MSYSTEM_PREFIX}/bin/libvorbis-0.dll \
 ${MSYSTEM_PREFIX}/bin/libvorbisfile-3.dll \
 ${MSYSTEM_PREFIX}/bin/libdeflate.dll \
 ${MSYSTEM_PREFIX}/bin/libffi-7.dll \
+${MSYSTEM_PREFIX}/bin/libvulkan-1.dll \
+${MSYSTEM_PREFIX}/bin/libjbig-0.dll \
+${MSYSTEM_PREFIX}/bin/libLerc.dll \
 ${PACKAGELOCAL}/bin/libcal3d-12.dll \
 .
 if [ "$MSYSTEM" = "MINGW32" ]
 then
-	cp -p ${MSYSTEM_PREFIX}/bin/libgcc_s_dw2-1.dll .
+	cp -p ${MSYSTEM_PREFIX}/bin/libgcc_s_dw2-1.dll \
+		${MSYSTEM_PREFIX}/bin/libcrypto-1_1.dll \
+		${MSYSTEM_PREFIX}/bin/libssl-1_1.dll \
+	.
+
 elif [ "$MSYSTEM" = "MINGW64" ]
 then
-	cp -p ${MSYSTEM_PREFIX}/bin/libgcc_s_seh-1.dll \
-		${MSYSTEM_PREFIX}/bin/libLLVM.dll \
+	cp -p \
+		${MSYSTEM_PREFIX}/bin/libgcc_s_seh-1.dll \
+		${MSYSTEM_PREFIX}/bin/libLLVM-13.dll \
 		${MSYSTEM_PREFIX}/bin/libglapi.dll \
+		${MSYSTEM_PREFIX}/bin/libcrypto-1_1-x64.dll \
+		${MSYSTEM_PREFIX}/bin/libssl-1_1-x64.dll \
 		.
 fi
 
