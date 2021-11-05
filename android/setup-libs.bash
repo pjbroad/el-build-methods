@@ -67,7 +67,7 @@ libdir=libsrc
 # libxml2
 #
 cd $basedir
-version="2.9.11"
+version="2.9.12"
 rm -rf ${libdir}/libxml2-${version}/
 rm -f xml2
 if [ -z "$clean_libs" ]
@@ -149,7 +149,7 @@ fi
 # SDL2
 #
 cd $basedir
-version="2.0.14"
+version="2.0.16"
 rm -rf ${libdir}/SDL2-${version}/
 rm -f SDL2
 rm -f ${libsdlappdir}/*.java
@@ -241,7 +241,7 @@ fi
 # openssl
 #
 cd $basedir
-version="OpenSSL_1_1_1k"
+version="1.1.1l"
 rm -rf ${libdir}/openssl-${version}
 rm -f openssl
 if [ -z "$clean_libs" ]
@@ -250,8 +250,8 @@ then
 	PLATFORM=android-arm
 
 	cd ${libdir}/
-	[ ! -r ${version}.tar.gz ] && wget https://github.com/openssl/openssl/archive/refs/tags/${version}.tar.gz
-	tar xfz ${version}.tar.gz
+	[ ! -r openssl-${version}.tar.gz ] && wget https://www.openssl.org/source/openssl-${version}.tar.gz
+	tar xfz openssl-${version}.tar.gz
 	cd ..
 	ln -s ${libdir}/openssl-${version} openssl
 
