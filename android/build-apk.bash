@@ -31,9 +31,10 @@ export PATH=$PATH:$ANDROID_HOME/ndk-bundle
 cd $(dirname $0)
 
 extractdatadir="el_data/"
-maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/eternallands-data_1.9.5.9-1.zip"
+maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0-rc1/eternallands-data_1.9.6.0.zip"
 androiddatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/eternallands-android-only-data_1.9.5dev.zip"
-tabmappath="https://maps.el-db.com/packs/BurnedMaps-1.9.5-02-minimal-version.zip"
+androidmaps="https://el-db.com/tempstuff/196release/maps-196-FOR-ANDROID-ONLY.zip"
+tabmappath=""
 
 # optionally remove all build artifacts (preserves library setup)
 echo "" && read -p "Clean build? (y/n) [n]: " opt
@@ -87,6 +88,11 @@ then
 		echo "Fetching Burn's tab maps..."
 		wget -q "$tabmappath"
 	fi
+	if [ -n "$androidmaps" -a ! -r "$(basename "$androidmaps")" ]
+	then
+		echo "Fetching android maps..."
+		wget -q "$androidmaps"
+	fi
 
 	cd ..
 	rm -rf assets/
@@ -113,6 +119,13 @@ then
 		cd maps
 		unzip -oq "$dlcache/$(basename "$tabmappath")"
 		cd ..
+	fi
+
+	# overwrite the maps if we have a full pack package
+	if [ -n "$androidmaps" ]
+	then
+		rm -rf maps/
+		unzip -oq "$dlcache/$(basename "$androidmaps")"
 	fi
 
 	# if we have local assets files then include them
@@ -149,7 +162,7 @@ then
 fi
 
 echo "" && echo "Building ..."
-BUILDTAG="1.9.5-$(date +"%Y%m%d.%H%M")"
+BUILDTAG="1.9.6.0-rc1-$(date +"%Y%m%d.%H%M")"
 APP_ALLOW_MISSING_DEPS=true ndk-build --silent -j $(grep -c ^processor /proc/cpuinfo) ELVERSION=$BUILDTAG
 
 echo "" && echo "Packaging ..."
