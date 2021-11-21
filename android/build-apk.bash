@@ -152,6 +152,13 @@ then
 	# create the asset list
 	date +"%s" > asset.list
 	find . -type f | grep -v "^./asset.list$" >> asset.list
+	for file in $(find . -type f -name "*.xz.preserve") $(find . -type f -name "*.gz.preserve")
+	do
+		basefile=$(echo $file | rev |cut -f3- -d'.' | rev)
+		echo "$basefile" >> asset.list
+		echo "$basefile.gz" >> asset.list
+		echo "$basefile.xz" >> asset.list
+	done
 	cd ../
 fi
 
@@ -162,7 +169,7 @@ then
 fi
 
 echo "" && echo "Building ..."
-BUILDTAG="1.9.6.0-rc1-$(date +"%Y%m%d.%H%M")"
+BUILDTAG="1.9.6.0-rc-$(date +"%Y%m%d.%H%M")"
 APP_ALLOW_MISSING_DEPS=true ndk-build --silent -j $(grep -c ^processor /proc/cpuinfo) ELVERSION=$BUILDTAG
 
 echo "" && echo "Packaging ..."
