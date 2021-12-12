@@ -149,7 +149,7 @@ fi
 # SDL2
 #
 cd $basedir
-version="2.0.16"
+version="2.0.18"
 rm -rf ${libdir}/SDL2-${version}/
 rm -f SDL2
 rm -f ${libsdlappdir}/*.java
@@ -170,7 +170,7 @@ then
 	cp -p ${libdir}/SDLActivity.java.patch ${libsdlappdir}/
 	cd ${libsdlappdir}/
 	patch -p0 < SDLActivity.java.patch
-	rm -f SDLActivity.java.patch
+	rm -f SDLActivity.java.patch SDLActivity.java.orig
 	cd $basedir
 fi
 
