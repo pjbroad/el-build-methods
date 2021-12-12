@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+	<include domain="external" path="./user/" />
+	<exclude domain="external" path="./user/custom_clothes.zip" />
+	<exclude domain="external" path="./user/custom_clothes.zip.lock" />
+	<exclude domain="external" path="./user/unofficial_custom_clothes.zip" />
+	<exclude domain="external" path="./user/unofficial_custom_clothes.zip.lock" />
+	<exclude domain="external" path="./user/main/tmp" />
+	<exclude domain="external" path="./user/test/tmp" />
+	<exclude domain="external" path="./user/pk/tmp" />
+	<exclude domain="external" path="./user/updates" />
+	<exclude domain="external" path="./user/log" />
+	<exclude domain="external" path="./user/maps" />
+</full-backup-content>
