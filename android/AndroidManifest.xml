@@ -5,7 +5,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.el.elc"
       android:versionCode="10"
-      android:versionName="1.9.6 release candidate 5"
+      android:versionName="1.9.6.0 release"
       android:installLocation="auto">
 
     <!-- Android 2.3.3 -->
