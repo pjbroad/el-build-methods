@@ -35,6 +35,10 @@ maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0
 androiddatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/eternallands-android-only-data_1.9.6.zip"
 androidmaps="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/maps-196-FOR-ANDROID-ONLY.zip"
 tabmappath=""
+#maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0-rc1/eternallands-data_1.9.6.0.zip"
+#androiddatapath=""
+#androiddatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/eternallands-android-only-data_1.9.5dev.zip"
+#tabmappath="https://maps.el-db.com/packs/BurnedMaps-1.9.5-02-minimal-version.zip"
 
 # optionally remove all build artifacts (preserves library setup)
 echo "" && read -p "Clean build? (y/n) [n]: " opt
@@ -169,7 +173,8 @@ then
 fi
 
 echo "" && echo "Building ..."
-BUILDTAG="1.9.6.0"
+BUILDTAG="1.9.6.0-1"
+#BUILDTAG="1.9.5-$(date +"%Y%m%d.%H%M")"
 APP_ALLOW_MISSING_DEPS=true ndk-build --silent -j $(grep -c ^processor /proc/cpuinfo) ELVERSION=$BUILDTAG
 
 echo "" && read -p "Package debug? (y/n) [y]: " opt
