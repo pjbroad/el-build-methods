@@ -32,6 +32,7 @@ cd $(dirname $0)
 
 extractdatadir="el_data/"
 maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/eternallands-data_1.9.6.0.zip"
+patchdatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0-p1-rc1/eternallands-data-patch-1.9.6.0-1.zip"
 androiddatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/eternallands-android-only-data_1.9.6.zip"
 androidmaps="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/maps-196-FOR-ANDROID-ONLY.zip"
 tabmappath=""
@@ -78,6 +79,11 @@ then
 		echo "Fetching data package..."
 		wget -q "$maindatapath"
 	fi
+	if [ -n "$patchdatapath" -a ! -r "$(basename "$patchdatapath")" ]
+	then
+		echo "Fetching data patch..."
+		wget -q "$patchdatapath"
+	fi
 	if [ -n "$androiddatapath" -a ! -r "$(basename "$androiddatapath")" ]
 	then
 		echo "Fetching android only data package..."
@@ -112,6 +118,9 @@ then
 	# unpack the android only data files
 	[ -n "$androiddatapath" ] && unzip -oq "$dlcache/$(basename "$androiddatapath")"
 
+	# unpack and data patch
+	[ -n "$patchdatapath" ] && unzip -oq "$dlcache/$(basename "$patchdatapath")"
+
 	# overwrite the tab maps with Burn's package
 	if [ -n "$tabmappath" ]
 	then
@@ -141,8 +150,8 @@ then
 	find . -name "*.gz" -exec mv {} {}.preserve \;
 	find . -name "*.xz" -exec mv {} {}.preserve \;
 
-	# we don't currently use the shaders
-	rm -rf shaders/
+	# we don't currently use the shaders, sound or music
+	rm -rf shaders/ sound/ music/
 
 	# generate the font list, user menu list and the certificate list
 	[ -d fonts ] && find fonts/ -name "*.ttf" > ttf_list.txt
