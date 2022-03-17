@@ -31,8 +31,8 @@ export PATH=$PATH:$ANDROID_HOME/ndk-bundle
 cd $(dirname $0)
 
 extractdatadir="el_data/"
-maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/eternallands-data_1.9.6.0.zip"
-patchdatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0-p1-rc1/eternallands-data-patch-1.9.6.0-1.zip"
+maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.1/eternallands-data_1.9.6.1.zip"
+patchdatapath=""
 androiddatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/eternallands-android-only-data_1.9.6.zip"
 androidmaps="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/maps-196-FOR-ANDROID-ONLY.zip"
 tabmappath=""
@@ -178,7 +178,7 @@ then
 fi
 
 echo "" && echo "Building ..."
-BUILDTAG="1.9.6.0-$(date +"%Y%m%d.%H%M")"
+BUILDTAG="1.9.6p1"
 APP_ALLOW_MISSING_DEPS=true ndk-build --silent -j $(grep -c ^processor /proc/cpuinfo) ELVERSION=$BUILDTAG
 
 echo "" && read -p "Package debug? (y/n) [y]: " opt
