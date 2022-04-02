@@ -44,8 +44,7 @@ $ANDROID_HOME/tools/bin/sdkmanager "platform-tools"
 $ANDROID_HOME/tools/bin/sdkmanager "build-tools;30.0.3"
 $ANDROID_HOME/tools/bin/sdkmanager "ndk-bundle"
 
-$ANDROID_HOME/tools/bin/sdkmanager "platforms;android-19"
-$ANDROID_HOME/tools/bin/sdkmanager "platforms;android-30"
+$ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
 ```
 
 ### Setting up the build tree
@@ -62,15 +61,11 @@ cd el-build-methods/android/
 ```
 
 #### Downloading the Eternal Lands Client
-Next, clone the Eternal Lands source into the build tree.  The Android
-port is currently in a separate branch so we also need to checkout that
-branch.
+Next, clone the Eternal Lands source into the build tree.
 ````
 cd jni
 git clone https://github.com/raduprv/Eternal-Lands.git src
-cd src
-git checkout android
-cd ../..
+cd ..
 ````
 
 ## Building the Android package
