@@ -246,7 +246,7 @@ rm -rf ${libdir}/openssl-${version}
 rm -f openssl
 if [ -z "$clean_libs" ]
 then
-	SYSROOT=${NDK_ROOT}/platforms/android-19/arch-arm
+	SYSROOT=${NDK_ROOT}/platforms/android-${API_LEVEL}/arch-arm
 	PLATFORM=android-arm
 
 	cd ${libdir}/
