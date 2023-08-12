@@ -44,6 +44,8 @@ if [ "$1" = "clean" ]
 then
 	echo "Removing build directory"
 	rm -rf ${CLIENTBASE}/${REPONAME}/${BUILDTARGET}-${buildtype}/
+	echo "Removing ${CLIENTBASE}/${ZIPPREFIX}-${BUILDTARGET}-${buildtype}"
+	rm -rf "${CLIENTBASE}/${ZIPPREFIX}-${BUILDTARGET}-${buildtype}"
 	exit
 fi
 
@@ -95,59 +97,11 @@ make -j $numproc $*
 cd ${CLIENTBASE}
 mkdir -p ${ZIPPREFIX}-${BUILDTARGET}-${buildtype} && cd ${ZIPPREFIX}-${BUILDTARGET}-${buildtype}
 cp -p ../${REPONAME}/${BUILDTARGET}-${buildtype}/${EXENAME} .
-cp -p \
-${MSYSTEM_PREFIX}/bin/libiconv-2.dll \
-${MSYSTEM_PREFIX}/bin/libjpeg-8.dll \
-${MSYSTEM_PREFIX}/bin/liblzma-5.dll \
-${MSYSTEM_PREFIX}/bin/libopenal-1.dll \
-${MSYSTEM_PREFIX}/bin/libpng16-16.dll \
-${MSYSTEM_PREFIX}/bin/libstdc++-6.dll \
-${MSYSTEM_PREFIX}/bin/libtiff-5.dll \
-${MSYSTEM_PREFIX}/bin/libwebp-7.dll \
-${MSYSTEM_PREFIX}/bin/libwinpthread-1.dll \
-${MSYSTEM_PREFIX}/bin/libxml2-2.dll \
-${MSYSTEM_PREFIX}/bin/libzstd.dll \
-${MSYSTEM_PREFIX}/bin/SDL2.dll \
-${MSYSTEM_PREFIX}/bin/SDL2_image.dll \
-${MSYSTEM_PREFIX}/bin/SDL2_net.dll \
-${MSYSTEM_PREFIX}/bin/SDL2_ttf.dll \
-${MSYSTEM_PREFIX}/bin/libfreetype-6.dll \
-${MSYSTEM_PREFIX}/bin/libbz2-1.dll \
-${MSYSTEM_PREFIX}/bin/libharfbuzz-0.dll \
-${MSYSTEM_PREFIX}/bin/libbrotlidec.dll \
-${MSYSTEM_PREFIX}/bin/libbrotlicommon.dll \
-${MSYSTEM_PREFIX}/bin/libgraphite2.dll \
-${MSYSTEM_PREFIX}/bin/libglib-2.0-0.dll \
-${MSYSTEM_PREFIX}/bin/libintl-8.dll \
-${MSYSTEM_PREFIX}/bin/libpcre-1.dll \
-${MSYSTEM_PREFIX}/bin/zlib1.dll \
-${MSYSTEM_PREFIX}/bin/libogg-0.dll \
-${MSYSTEM_PREFIX}/bin/libvorbis-0.dll \
-${MSYSTEM_PREFIX}/bin/libvorbisfile-3.dll \
-${MSYSTEM_PREFIX}/bin/libdeflate.dll \
-${MSYSTEM_PREFIX}/bin/libffi-7.dll \
-${MSYSTEM_PREFIX}/bin/libvulkan-1.dll \
-${MSYSTEM_PREFIX}/bin/libjbig-0.dll \
-${MSYSTEM_PREFIX}/bin/libLerc.dll \
-${PACKAGELOCAL}/bin/libcal3d-12.dll \
-.
-if [ "$MSYSTEM" = "MINGW32" ]
-then
-	cp -p ${MSYSTEM_PREFIX}/bin/libgcc_s_dw2-1.dll \
-		${MSYSTEM_PREFIX}/bin/libcrypto-1_1.dll \
-		${MSYSTEM_PREFIX}/bin/libssl-1_1.dll \
-	.
-
-elif [ "$MSYSTEM" = "MINGW64" ]
-then
-	cp -p \
-		${MSYSTEM_PREFIX}/bin/libgcc_s_seh-1.dll \
-		${MSYSTEM_PREFIX}/bin/libLLVM-13.dll \
-		${MSYSTEM_PREFIX}/bin/libglapi.dll \
-		${MSYSTEM_PREFIX}/bin/libcrypto-1_1-x64.dll \
-		${MSYSTEM_PREFIX}/bin/libssl-1_1-x64.dll \
-		.
-fi
+cp -p ${PACKAGELOCAL}/bin/libcal3d-12.dll .
+for i in $(ldd el.exe | grep '/mingw' | awk '{print $3}')
+do
+	cp -p $i .
+done
 
 # zip up the directory of files
 cd ${CLIENTBASE}/${ZIPPREFIX}-${BUILDTARGET}-${buildtype}
