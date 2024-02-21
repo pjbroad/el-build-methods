@@ -66,14 +66,13 @@ You can obtain the latest framework pack directly from the [releases page](https
 Eternal Lands github. The framework pack will be listed as an asset for 
 the latest source code release.
 
-The file you are looking for will be named `el_1.9.5p*_macOS_frameworks.zip`, 
+The file you are looking for will be named `el_1.9.6_macOS_frameworks_R2.zip`, 
 or something very similar. Download and extract it somewhere that'll 
 be easy for you to find.
 
 Once extracted, you should have a folder named 
-`el_1.9.5p*_macOS_Frameworks` which contains the *.framework 
-files you will need to build the client. These are pre-signed for your 
-convenience, so it is vital that you **do not attempt to modify them**.
+`el_1.9.6_macOS_frameworks_R2` which contains the *.framework 
+files you will need to build the client.
 
 ## 4. Framework Location
 
