@@ -48,7 +48,7 @@ then
 	fi
 
 	NDK_ROOT=$ANDROID_HOME/ndk-bundle
-	API_LEVEL=19
+	API_LEVEL=21
 	SYSROOT=$NDK_ROOT/platforms/android-$API_LEVEL/arch-arm
 	export CC="$NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi${API_LEVEL}-clang"
 	export CFLAGS="$($NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-config --cflags)"
