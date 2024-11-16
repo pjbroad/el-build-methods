@@ -1,5 +1,5 @@
---- SDLActivity.java.orginal	2024-11-13 20:17:04.299947657 +0000
-+++ SDLActivity.java	2024-11-13 20:18:25.032265237 +0000
+--- SDLActivity.java.orig	2023-04-05 19:45:47.000000000 +0100
++++ SDLActivity.java	2024-11-16 20:08:11.207445063 +0000
 @@ -270,10 +270,15 @@
      protected String[] getLibraries() {
          return new String[] {
@@ -27,3 +27,22 @@
                               InputType.TYPE_TEXT_FLAG_MULTI_LINE;
          outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI |
                                EditorInfo.IME_FLAG_NO_FULLSCREEN /* API 11 */;
+@@ -2002,6 +2008,18 @@
+ 
+     @Override
+     public boolean deleteSurroundingText(int beforeLength, int afterLength) {
++        if (Build.VERSION.SDK_INT <= 29) {
++            // Workaround to capture backspace key. Ref: http://stackoverflow.com/questions>/14560344/android-backspace-in-webview-baseinputconnection
++            // and https://bugzilla.libsdl.org/show_bug.cgi?id=2265
++            if (beforeLength > 0 && afterLength == 0) {
++                // backspace(s)
++                while (beforeLength-- > 0) {
++                    nativeGenerateScancodeForUnichar('\b');
++                }
++                return true;
++           }
++        }
++
+         if (!super.deleteSurroundingText(beforeLength, afterLength)) {
+             return false;
+         }
