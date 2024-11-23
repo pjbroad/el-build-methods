@@ -179,7 +179,7 @@ then
 fi
 
 echo "" && echo "Building ..."
-BUILDTAG="1.9.7"
+BUILDTAG=""
 APP_ALLOW_MISSING_DEPS=true ndk-build --silent -j $(grep -c ^processor /proc/cpuinfo) ELVERSION=$BUILDTAG
 
 echo "" && read -p "Package debug? (y/n) [y]: " opt
@@ -191,5 +191,5 @@ fi
 
 if [ -x "./local-build-apk.bash" ]
 then
-	./local-build-apk.bash "$BUILDTAG" $*
+	./local-build-apk.bash "${BUILDTAG:-$(date +"%Y%m%d.%H%M")}" $*
 fi
