@@ -31,11 +31,11 @@ export PATH=$PATH:$ANDROID_HOME/ndk-bundle
 cd $(dirname $0)
 
 extractdatadir="el_data/"
-maindatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.1/eternallands-data_1.9.6.1.zip"
+maindatapath="https://twinmoons.org.uk/el/rel/197/eternallands-data_1.9.7.zip"
 patchdatapath=""
-androiddatapath="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/eternallands-android-only-data_1.9.6.zip"
-androidmaps="https://github.com/raduprv/Eternal-Lands/releases/download/1.9.6.0/maps-196-FOR-ANDROID-ONLY.zip"
-tabmappath=""
+androiddatapath="https://twinmoons.org.uk/el/rel/197/eternallands-android-only-data_1.9.6.zip"
+androidmaps=""
+tabmappath="https://twinmoons.org.uk/el/rel/197/512pxMapsForAndroid.tar.gz"
 
 # optionally remove all build artifacts (preserves library setup)
 echo "" && read -p "Clean build? (y/n) [n]: " opt
@@ -126,7 +126,8 @@ then
 	then
 		mkdir -p maps
 		cd maps
-		unzip -oq "$dlcache/$(basename "$tabmappath")"
+		tar xfz "$dlcache/$(basename "$tabmappath")"
+		mv 512pxMapsForAndroid/* .
 		cd ..
 	fi
 
@@ -178,7 +179,7 @@ then
 fi
 
 echo "" && echo "Building ..."
-BUILDTAG="1.9.6p1"
+BUILDTAG=""
 APP_ALLOW_MISSING_DEPS=true ndk-build --silent -j $(grep -c ^processor /proc/cpuinfo) ELVERSION=$BUILDTAG
 
 echo "" && read -p "Package debug? (y/n) [y]: " opt
@@ -190,5 +191,5 @@ fi
 
 if [ -x "./local-build-apk.bash" ]
 then
-	./local-build-apk.bash "$BUILDTAG" $*
+	./local-build-apk.bash "${BUILDTAG:-$(date +"%Y%m%d.%H%M")}" $*
 fi
