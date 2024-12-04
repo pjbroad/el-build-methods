@@ -44,7 +44,7 @@ $ANDROID_HOME/tools/bin/sdkmanager "platform-tools"
 $ANDROID_HOME/tools/bin/sdkmanager "build-tools;30.0.3"
 $ANDROID_HOME/tools/bin/sdkmanager "ndk-bundle"
 
-$ANDROID_HOME/tools/bin/sdkmanager "platforms;android-19"
+$ANDROID_HOME/tools/bin/sdkmanager "platforms;android-21"
 $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-30"
 ```
 
