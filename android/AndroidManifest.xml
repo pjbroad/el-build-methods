@@ -9,7 +9,7 @@
       android:installLocation="auto">
 
     <!-- Android 5 - 15 -->
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 
     <!-- OpenGL ES 1.0 -->
     <!-- uses-feature android:glEsVersion="0x00010001" / -->
@@ -34,6 +34,7 @@
                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                  android:hardwareAccelerated="true" >
         <activity android:name="ELCActivity"
+                  android:exported="true"
                   android:label="@string/app_name"
                   android:configChanges="keyboardHidden|keyboard|orientation|screenSize|screenLayout|smallestScreenSize"
                   >
