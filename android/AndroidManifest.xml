@@ -4,7 +4,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.el.elc"
-      android:versionCode="14"
+      android:versionCode="20"
       android:versionName="1.9.7 Stable Release"
       android:installLocation="auto">
 
